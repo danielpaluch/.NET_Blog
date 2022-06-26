@@ -1,14 +1,13 @@
 ﻿namespace BlogAPI.Entities
 {
-    public class Blog
+    public class Comment
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual List<Comment> ?Comments { get; set; }
+        public int BlogId { get; set; }
+        public virtual Blog Blog { get; set; }
     }
 }

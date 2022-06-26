@@ -59,3 +59,5 @@ C:\Users\wombo\source\repos\BlogAPI\BlogAPI\obj\Debug\net6.0\BlogAPI.dll
 C:\Users\wombo\source\repos\BlogAPI\BlogAPI\obj\Debug\net6.0\ref\BlogAPI.dll
 C:\Users\wombo\source\repos\BlogAPI\BlogAPI\obj\Debug\net6.0\BlogAPI.pdb
 C:\Users\wombo\source\repos\BlogAPI\BlogAPI\obj\Debug\net6.0\BlogAPI.genruntimeconfig.cache
+C:\Users\wombo\source\repos\BlogAPI\BlogAPI\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\wombo\source\repos\BlogAPI\BlogAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

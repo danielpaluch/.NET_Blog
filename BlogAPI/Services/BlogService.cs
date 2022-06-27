@@ -11,6 +11,7 @@ namespace BlogAPI.Services
         int Create(CreateBlogDto dto);
         IEnumerable<BlogDto> GetAll();
         BlogDto GetById(int id);
+        bool Delete(int id);
     }
 
     public class BlogService : IBlogService
@@ -54,6 +55,20 @@ namespace BlogAPI.Services
             dbContext.SaveChanges();
 
             return blog.Id;
+        }
+        public bool Delete(int id)
+        {
+            var blog = dbContext
+                .Blogs
+                .FirstOrDefault(e => e.Id == id);
+
+            if (blog == null)
+                return false;
+
+            dbContext.Blogs.Remove(blog);
+            dbContext.SaveChanges();
+
+            return true;
         }
     }
 }

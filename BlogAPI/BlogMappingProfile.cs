@@ -12,6 +12,8 @@ namespace BlogAPI
                 .ForMember(e => e.Comments, c => c.MapFrom(s => s.Comments))
                 .ForMember(e => e.Category, c => c.MapFrom(s => s.Category.Name));
 
+            CreateMap<CommentDto, Comment>();
+
             CreateMap<Comment, CommentDto>();
 
             CreateMap<CreateBlogDto, Blog>()

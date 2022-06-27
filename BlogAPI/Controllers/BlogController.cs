@@ -45,5 +45,15 @@ namespace BlogAPI.Controllers
 
             return Created($"/api/blog/{id}", null);
         }
+        [HttpDelete("{id}")]
+        public ActionResult DeleteBlog([FromRoute] int id)
+        {
+            var isDeleted = blogService.Delete(id);
+
+            if (!isDeleted)
+                return NotFound();
+
+            return Ok();
+        }
     }
 }

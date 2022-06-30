@@ -14,6 +14,12 @@ namespace BlogAPI
         {
             if (dbContext.Database.CanConnect())
             {
+                if(!dbContext.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    dbContext.Roles.AddRange(roles);
+                    dbContext.SaveChanges();
+                }
                 if (!dbContext.Blogs.Any())
                 {
                     var blogs = GetBlogs();
@@ -85,6 +91,21 @@ namespace BlogAPI
                 },
             };
             return categories;
+        }
+        private IEnumerable<Role> GetRoles()
+        {
+            var roles = new List<Role>()
+            {
+                new Role()
+                {
+                    Name = "User"
+                },
+                new Role()
+                {
+                    Name = "Admin"
+                }
+            };
+            return roles;
         }
     }
 }

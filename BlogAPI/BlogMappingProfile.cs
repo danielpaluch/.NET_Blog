@@ -18,6 +18,10 @@ namespace BlogAPI
 
             CreateMap<CreateBlogDto, Blog>()
                 .ForMember(r => r.Category, c => c.MapFrom(dto => new Category() { Name = dto.Category }));
+
+            CreateMap<RegisterUserDto, User>()
+                .ForMember(r => r.Role, c => c.MapFrom(dto => new Role() { Id = dto.RoleId }));
+
         }
     }
 }

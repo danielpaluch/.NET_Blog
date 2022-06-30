@@ -3,14 +3,14 @@ namespace BlogAPI.Entities
 {
         public class BlogDbContext : DbContext
         {
-            private string _connectionString = "Server=DESKTOP-ESJ2ABO;Database=BlogDb;Trusted_Connection=True";
-            // DESKTOP-ESJ2ABO komp
+            private string _connectionString = "Server=DESKTOP-T1HVHEK;Database=BlogDb;Trusted_Connection=True";
+            // DESKTOP-T1HVHEK komp
             // DESKTOP-E59MHE2 lap
             public DbSet<Blog> Blogs { get; set; }
             public DbSet<Category> Categories { get; set; }
             public DbSet<Comment> Comments { get; set; }
             public DbSet<User> Users { get; set; }
-            public DbSet<Role> Roles { get; set }
+            public DbSet<Role> Roles { get; set; }
 
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)

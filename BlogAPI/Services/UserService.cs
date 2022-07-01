@@ -4,6 +4,7 @@ using AutoMapper;
 using BlogAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using BlogAPI.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogAPI.Services
 {
@@ -17,10 +18,12 @@ namespace BlogAPI.Services
     public class UserService : IUserService
     {
         private readonly BlogDbContext dbContext;
+        private readonly IPasswordHasher<User> passwordHasher;
 
-        public UserService(BlogDbContext dbContext)
+        public UserService(BlogDbContext dbContext, IPasswordHasher<User> passwordHasher)
         {
             this.dbContext = dbContext;
+            this.passwordHasher = passwordHasher;
         }
 
         public IEnumerable<User> GetUsers()
@@ -34,13 +37,17 @@ namespace BlogAPI.Services
         }
         public User CreateUser(RegisterUserDto dto)
         {
+
             var user = new User()
             {
                 Name = dto.Name,
-                Password = dto.Password,
                 Email = dto.Email,
                 RoleId = dto.RoleId
             };
+
+            var hashedPassword = passwordHasher.HashPassword(user, dto.Password);
+            user.Password = hashedPassword;
+
 
             dbContext.Users.Add(user);
             dbContext.SaveChanges();

@@ -3,7 +3,7 @@ namespace BlogAPI.Entities
 {
         public class BlogDbContext : DbContext
         {
-            private string _connectionString = "Server=DESKTOP-T1HVHEK;Database=BlogDb;Trusted_Connection=True";
+            private string _connectionString = "Server=DESKTOP-E59MHE2;Database=BlogDb;Trusted_Connection=True";
             // DESKTOP-T1HVHEK komp
             // DESKTOP-E59MHE2 lap
             public DbSet<Blog> Blogs { get; set; }

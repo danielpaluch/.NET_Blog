@@ -7,12 +7,16 @@ using BlogAPI.Models;
 using BlogAPI.Models.Validators;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using BlogAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //JWT TOKEN
 var authenticationSettings = new AuthenticationSettings();
 builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+builder.Services.AddSingleton(authenticationSettings);
+
 builder.Services.AddAuthentication(option => 
     {
         option.DefaultAuthenticateScheme = "Bearer";
@@ -24,6 +28,7 @@ builder.Services.AddAuthentication(option =>
         cfg.SaveToken = true;
         cfg.TokenValidationParameters = new TokenValidationParameters
         {
+            ClockSkew = TimeSpan.Zero,
             ValidIssuer = authenticationSettings.JwtIssuer,
             ValidAudience = authenticationSettings.JwtIssuer,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
@@ -43,6 +48,7 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserValidator>();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 
 
@@ -59,6 +65,8 @@ if (app.Environment.IsDevelopment())
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<BlogSeeder>();
 seeder.Seed();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseHttpsRedirection();

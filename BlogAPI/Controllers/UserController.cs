@@ -24,19 +24,26 @@ namespace BlogAPI.Controllers
 
             return Ok(users);
         }
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public ActionResult CreateUser([FromBody] RegisterUserDto dto)
         {
             userService.CreateUser(dto);
 
             return Ok();
         }
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public ActionResult DeleteUser([FromRoute] int id)
         {
             userService.DeleteUser(id);
 
             return Ok();
+        }
+        [HttpPost("login")]
+        public ActionResult Login([FromBody] LoginDto dto)
+        {
+            string token = userService.GenerateToken(dto);
+
+            return Ok(token);
         }
     }
 }

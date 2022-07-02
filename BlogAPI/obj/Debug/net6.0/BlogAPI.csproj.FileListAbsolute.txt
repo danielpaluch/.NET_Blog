@@ -250,3 +250,7 @@ C:\Users\danie\source\repos\.NET_Blog\BlogAPI\obj\Debug\net6.0\refint\BlogAPI.dl
 C:\Users\danie\source\repos\.NET_Blog\BlogAPI\obj\Debug\net6.0\BlogAPI.pdb
 C:\Users\danie\source\repos\.NET_Blog\BlogAPI\obj\Debug\net6.0\BlogAPI.genruntimeconfig.cache
 C:\Users\danie\source\repos\.NET_Blog\BlogAPI\obj\Debug\net6.0\ref\BlogAPI.dll
+C:\Users\danie\source\repos\.NET_Blog\BlogAPI\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\danie\source\repos\.NET_Blog\BlogAPI\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\danie\source\repos\.NET_Blog\BlogAPI\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\danie\source\repos\.NET_Blog\BlogAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Daniel\\.NET\\.NET_Blog\\BlogAPI\\BlogAPI.csproj": {}
+    "C:\\Users\\danie\\source\\repos\\.NET_Blog\\BlogAPI\\BlogAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Daniel\\.NET\\.NET_Blog\\BlogAPI\\BlogAPI.csproj": {
+    "C:\\Users\\danie\\source\\repos\\.NET_Blog\\BlogAPI\\BlogAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\.NET\\.NET_Blog\\BlogAPI\\BlogAPI.csproj",
+        "projectUniqueName": "C:\\Users\\danie\\source\\repos\\.NET_Blog\\BlogAPI\\BlogAPI.csproj",
         "projectName": "BlogAPI",
-        "projectPath": "C:\\Users\\Daniel\\.NET\\.NET_Blog\\BlogAPI\\BlogAPI.csproj",
-        "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\.NET\\.NET_Blog\\BlogAPI\\obj\\",
+        "projectPath": "C:\\Users\\danie\\source\\repos\\.NET_Blog\\BlogAPI\\BlogAPI.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danie\\source\\repos\\.NET_Blog\\BlogAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,14 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.1.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

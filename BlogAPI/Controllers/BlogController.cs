@@ -4,6 +4,7 @@ using AutoMapper;
 using BlogAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using BlogAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogAPI.Controllers
 {
@@ -27,6 +28,7 @@ namespace BlogAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<Blog> Get([FromRoute] int id)
         {
             var blog = blogService.GetById(id);
@@ -34,7 +36,8 @@ namespace BlogAPI.Controllers
             return Ok(blog);
         }
         [HttpPost]
-        public ActionResult CreatedBlog([FromBody] CreateBlogDto dto)
+        [Authorize]
+        public ActionResult CreateBlog([FromBody] CreateBlogDto dto)
         {
             if (!ModelState.IsValid)
             {
@@ -46,6 +49,7 @@ namespace BlogAPI.Controllers
             return Created($"/api/blog/{id}", null);
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteBlog([FromRoute] int id)
         {
             var isDeleted = blogService.Delete(id);

@@ -4,11 +4,13 @@ using AutoMapper;
 using BlogAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using BlogAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogAPI.Controllers
 {
     [ApiController]
     [Route("api/blog/{id}/comment")]
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;

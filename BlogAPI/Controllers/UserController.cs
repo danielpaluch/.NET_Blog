@@ -4,6 +4,7 @@ using AutoMapper;
 using BlogAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using BlogAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogAPI.Controllers
 {
@@ -18,6 +19,7 @@ namespace BlogAPI.Controllers
             this.userService = userService;
         }
         [HttpGet]
+        [Authorize("Admin")]
         public ActionResult<List<User>> GetUsers()
         {
             var users = userService.GetUsers();
@@ -31,6 +33,8 @@ namespace BlogAPI.Controllers
 
             return Ok();
         }
+
+        [Authorize("Admin")]
         [HttpDelete("{id}")]
         public ActionResult DeleteUser([FromRoute] int id)
         {

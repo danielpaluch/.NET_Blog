@@ -8,7 +8,7 @@
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         public int ?CreatedById { get; set; }
-        public virtual User CreatedByUser { get; set; }
+        public virtual User ?CreatedByUser { get; set; }
 
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }

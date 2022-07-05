@@ -8,6 +8,8 @@ using BlogAPI.Models.Validators;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using BlogAPI.Middleware;
+using Microsoft.AspNetCore.Authorization;
+using BlogAPI.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,18 +51,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserValidator>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, CommentResourceOperationHandler>();
 
 
 
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
 
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<BlogSeeder>();
@@ -70,6 +69,12 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseHttpsRedirection();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseAuthorization();
 

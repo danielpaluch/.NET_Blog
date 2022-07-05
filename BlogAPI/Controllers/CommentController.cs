@@ -5,6 +5,7 @@ using BlogAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using BlogAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BlogAPI.Controllers
 {
@@ -22,13 +23,15 @@ namespace BlogAPI.Controllers
         [HttpPost]
         public ActionResult AddComment([FromRoute] int id, [FromBody] CommentDto comment)
         {
-            var isDone = commentService.Create(id, comment);
+            var userId = int.Parse(User.FindFirst(e => e.Type == ClaimTypes.NameIdentifier).Value);
+
+            var isDone = commentService.Create(id, comment, userId);
             return Ok(isDone);
         }
         [HttpDelete]
         public ActionResult DeleteComment([FromRoute] int id, [FromQuery] int idOfComment)
         {
-            var isDone = commentService.Delete(id, idOfComment);
+            var isDone = commentService.Delete(id, idOfComment, User);
             return Ok(isDone);
         }
     }

@@ -19,7 +19,6 @@ namespace BlogAPI.Controllers
             this.userService = userService;
         }
         [HttpGet]
-        [Authorize("Admin")]
         public ActionResult<List<User>> GetUsers()
         {
             var users = userService.GetUsers();

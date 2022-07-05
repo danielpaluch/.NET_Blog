@@ -5,6 +5,7 @@ using BlogAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using BlogAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BlogAPI.Controllers
 {
@@ -44,15 +45,18 @@ namespace BlogAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var id = blogService.Create(dto);
+            var userId = int.Parse(User.FindFirst(e => e.Type == ClaimTypes.NameIdentifier).Value);
+
+            var id = blogService.Create(dto, userId);
 
             return Created($"/api/blog/{id}", null);
         }
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult DeleteBlog([FromRoute] int id)
         {
-            var isDeleted = blogService.Delete(id);
+
+            var isDeleted = blogService.Delete(id, User);
 
             if (!isDeleted)
                 return NotFound();

@@ -1,0 +1,27 @@
+(Postman recommended)
+CREATE BLOG
+[POST]
+{
+	"title": "title",
+        "Description": "desc",
+        "Category": "category"
+}
+CREATE COMMENT
+[POST]
+{
+	"description": "desc"
+}
+REGISTER USER
+[POST]
+{
+        "Name": "name",
+        "Email": "email@email.com",
+        "Password": "password",
+       	"ConfirmPassword": "password"
+}
+LOGIN USER (you get in response bearer code, add it in headers (Authorization - Bearer *code*))
+[POST]
+{
+	"Email": "email@emial.com",
+        "password": "password"
+}
